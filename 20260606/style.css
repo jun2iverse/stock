@@ -161,6 +161,30 @@ h3 { font-size: 16px; margin-bottom: 14px; color: var(--blue); font-weight: 700;
 .tape-inner .down { color: var(--red); }
 .tape-inner span { margin-right: 34px; }
 
+/* 커버 QR */
+.qr-box {
+  position: absolute;
+  top: 56px; right: 44px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 7px;
+  text-decoration: none;
+}
+.qr-box img {
+  display: block;
+  background: #fff;
+  padding: 7px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+}
+.qr-box span {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--text-dim);
+}
+.qr-box:hover span { color: var(--green); }
+
 .badge-row { display: flex; gap: 10px; margin-bottom: 22px; }
 .badge {
   font-family: var(--mono);
@@ -433,6 +457,8 @@ a.cstat:hover .ext { opacity: 1; color: var(--green); }
 /* 스마트폰 */
 @media (max-width: 600px) {
   .slide { padding: 34px 14px; }
+  .qr-box { top: 46px; right: 14px; }
+  .qr-box img { width: 64px; height: 64px; padding: 5px; }
   h2 { font-size: 22px; margin-bottom: 18px; }
   .sec-num { font-size: 15px; }
   #cover h1 { font-size: 34px; }
