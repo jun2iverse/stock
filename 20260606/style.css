@@ -430,6 +430,8 @@ a.cstat:hover .ext { opacity: 1; color: var(--green); }
 
 /* 스마트폰 */
 @media (max-width: 600px) {
+  /* 등장 애니메이션 비활성화 — 어떤 경우에도 내용이 숨지 않도록 */
+  .slide > * { opacity: 1 !important; transform: none !important; transition: none !important; }
   .slide { padding: 34px 14px; }
   h2 { font-size: 22px; margin-bottom: 18px; }
   .sec-num { font-size: 15px; }

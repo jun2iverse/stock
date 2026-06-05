@@ -23,15 +23,27 @@ tape.innerHTML = tapeHTML + tapeHTML; // 무한루프용 복제
 const sections = document.querySelectorAll(".slide");
 const navLinks = document.querySelectorAll("#sidenav a");
 
-const io = new IntersectionObserver(entries => {
+/* 등장 애니메이션: 섹션이 1px이라도 보이면 즉시 표시.
+   (threshold를 비율로 주면 화면보다 긴 섹션은 영영 못 채워서 모바일에서 내용이 안 보임) */
+const revealIo = new IntersectionObserver(entries => {
   entries.forEach(e => {
     if (e.isIntersecting) {
       e.target.classList.add("visible");
+      revealIo.unobserve(e.target); // 한 번 보이면 끝 — 재계산 불필요
+    }
+  });
+}, { threshold: 0, rootMargin: "0px 0px -40px 0px" });
+sections.forEach(s => revealIo.observe(s));
+
+/* 사이드 네비 활성화는 기존 기준(25%) 유지 — 데스크톱 전용 */
+const navIo = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
       navLinks.forEach(a => a.classList.toggle("active", a.getAttribute("href") === "#" + e.target.id));
     }
   });
 }, { threshold: 0.25 });
-sections.forEach(s => io.observe(s));
+sections.forEach(s => navIo.observe(s));
 
 /* ---------- 3. 스크롤 프로그레스 ---------- */
 window.addEventListener("scroll", () => {
